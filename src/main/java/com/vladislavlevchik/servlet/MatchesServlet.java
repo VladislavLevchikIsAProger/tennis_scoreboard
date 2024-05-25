@@ -25,7 +25,7 @@ public class MatchesServlet extends HttpServlet {
         String pageParam = req.getParameter("page");
 
         int page = (pageParam != null && !pageParam.isEmpty()) ? Integer.parseInt(pageParam) : 1;
-        ;
+
         int pageSize = 5;
         List<Match> allMatches;
 
