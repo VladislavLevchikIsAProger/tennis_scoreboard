@@ -34,9 +34,9 @@
     </tr>
     <c:forEach var="match" items="${matches}">
         <tr>
-            <td>${match.playerOne.name}</td>
-            <td>${match.playerTwo.name}</td>
-            <td>${match.winner.name}</td>
+            <td>${match.playerOne}</td>
+            <td>${match.playerTwo}</td>
+            <td>${match.winnerName}</td>
         </tr>
     </c:forEach>
 </table>
