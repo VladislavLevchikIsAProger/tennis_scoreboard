@@ -20,6 +20,17 @@ public class MatchDao implements IMatchDao {
     }
 
     @Override
+    public Match save(Match entity) {
+        try (SessionFactory sessionFactory = HibernateUtil.buildSessionFactory();
+             Session session = sessionFactory.openSession()) {
+
+            session.save(entity);
+
+            return entity;
+        }
+    }
+
+    @Override
     public List<Match> findAllMatchesByPlayerName(String name) {
 
         try (SessionFactory sessionFactory = HibernateUtil.buildSessionFactory();
