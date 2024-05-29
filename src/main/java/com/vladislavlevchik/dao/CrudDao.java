@@ -6,4 +6,6 @@ public interface CrudDao<T, ID> {
 
     List<T> findAll();
 
+    T save(T entity);
+
 }
