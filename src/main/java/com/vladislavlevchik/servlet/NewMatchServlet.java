@@ -1,7 +1,7 @@
 package com.vladislavlevchik.servlet;
 
 import com.vladislavlevchik.dao.PlayerDao;
-import com.vladislavlevchik.entity.MatchScore;
+import com.vladislavlevchik.dto.MatchScoreDto;
 import com.vladislavlevchik.entity.Player;
 import com.vladislavlevchik.service.OngoingMatchesService;
 import jakarta.servlet.ServletException;
@@ -12,6 +12,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.UUID;
+
+import static com.vladislavlevchik.mapper.MatchMapper.convertToDto;
 
 @WebServlet("/new-match")
 public class NewMatchServlet extends HttpServlet {
@@ -42,15 +44,14 @@ public class NewMatchServlet extends HttpServlet {
                                 .name(playerTwoName)
                                 .build()));
 
-
-        MatchScore matchScore = MatchScore.builder()
-                .playerOne(playerOne)
-                .playerTwo(playerTwo)
+        MatchScoreDto matchScoreDto = MatchScoreDto.builder()
+                .playerOne(convertToDto(playerOne))
+                .playerTwo(convertToDto(playerTwo))
                 .build();
 
         UUID uuid = UUID.randomUUID();
 
-        ongoingMatchesService.addMatch(uuid, matchScore);
+        ongoingMatchesService.addMatch(uuid, matchScoreDto);
 
         resp.sendRedirect("/match-score?uuid=" + uuid);
     }
