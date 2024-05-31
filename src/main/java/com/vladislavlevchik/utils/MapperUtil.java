@@ -4,9 +4,11 @@ import com.vladislavlevchik.dto.MatchResponseDto;
 import com.vladislavlevchik.dto.PlayerScoreDto;
 import com.vladislavlevchik.entity.Match;
 import com.vladislavlevchik.entity.Player;
+import lombok.experimental.UtilityClass;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 
+@UtilityClass
 public class MapperUtil {
     private static final ModelMapper MODEL_MAPPER;
 
