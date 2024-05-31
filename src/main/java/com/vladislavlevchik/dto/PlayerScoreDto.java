@@ -21,11 +21,6 @@ public class PlayerScoreDto {
 
     private int points;
 
-    public PlayerScoreDto(Long id, String playerName) {
-        this.id = id;
-        this.playerName = playerName;
-    }
-
     public void wonPoint() {
         points++;
     }
@@ -34,7 +29,15 @@ public class PlayerScoreDto {
         games++;
     }
 
+    public void wonSet(){
+        sets++;
+    }
+
     public void clearPoints() {
         points = 0;
+    }
+
+    public void clearGames() {
+        games = 0;
     }
 }
