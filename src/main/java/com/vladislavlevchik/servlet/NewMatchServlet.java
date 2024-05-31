@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.UUID;
 
-import static com.vladislavlevchik.mapper.MatchMapper.convertToDto;
+import static com.vladislavlevchik.mapper.MapperUtil.convertToDto;
 
 @WebServlet("/new-match")
 public class NewMatchServlet extends HttpServlet {

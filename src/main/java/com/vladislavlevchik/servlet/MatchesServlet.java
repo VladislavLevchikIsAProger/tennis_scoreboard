@@ -3,7 +3,7 @@ package com.vladislavlevchik.servlet;
 import com.vladislavlevchik.dao.MatchDao;
 import com.vladislavlevchik.dto.MatchResponseDto;
 import com.vladislavlevchik.entity.Match;
-import com.vladislavlevchik.mapper.MatchMapper;
+import com.vladislavlevchik.mapper.MapperUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -44,7 +44,7 @@ public class MatchesServlet extends HttpServlet {
 
         List<MatchResponseDto> matches = allMatches.subList(start, end)
                 .stream()
-                .map(MatchMapper::convertToDto)
+                .map(MapperUtil::convertToDto)
                 .toList();
 
         req.setAttribute("matches", matches);

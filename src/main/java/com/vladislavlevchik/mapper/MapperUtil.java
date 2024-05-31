@@ -7,7 +7,7 @@ import com.vladislavlevchik.entity.Player;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 
-public class MatchMapper {
+public class MapperUtil {
     private static final ModelMapper MODEL_MAPPER;
 
     static {
