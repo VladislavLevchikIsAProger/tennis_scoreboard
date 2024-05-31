@@ -1,4 +1,4 @@
-package com.vladislavlevchik.mapper;
+package com.vladislavlevchik.utils;
 
 import com.vladislavlevchik.dto.MatchResponseDto;
 import com.vladislavlevchik.dto.PlayerScoreDto;

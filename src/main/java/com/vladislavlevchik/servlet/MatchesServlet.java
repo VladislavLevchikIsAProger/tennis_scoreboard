@@ -3,7 +3,7 @@ package com.vladislavlevchik.servlet;
 import com.vladislavlevchik.dao.MatchDao;
 import com.vladislavlevchik.dto.MatchResponseDto;
 import com.vladislavlevchik.entity.Match;
-import com.vladislavlevchik.mapper.MapperUtil;
+import com.vladislavlevchik.utils.MapperUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
