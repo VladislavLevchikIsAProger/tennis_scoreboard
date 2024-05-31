@@ -25,36 +25,44 @@
                     <c:set var="playerOnePoints" value="${match.playerOne.points}" />
                     <c:set var="playerTwoPoints" value="${match.playerTwo.points}" />
 
+                    <!-- Проверка на тай-брейк -->
                     <c:choose>
-                        <c:when test="${playerOnePoints >= 3 && playerTwoPoints >= 3}">
-                            <%-- Оба игрока имеют по 40 очков --%>
-                            <c:choose>
-                                <c:when test="${match.playerOne.points > match.playerTwo.points}">
-                                    >
-                                </c:when>
-                                <c:when test="${match.playerOne.points < match.playerTwo.points}">
-                                    <
-                                </c:when>
-                                <c:otherwise>
-                                    =
-                                </c:otherwise>
-                            </c:choose>
+                        <c:when test="${match.playerOne.games == 6 && match.playerTwo.games == 6}">
+                            ${match.playerOne.points}
                         </c:when>
                         <c:otherwise>
-                            <%-- Преобразование очков в теннисный формат --%>
                             <c:choose>
-                                <c:when test="${playerOnePoints == 0}">
-                                    0
+                                <c:when test="${playerOnePoints >= 3 && playerTwoPoints >= 3}">
+                                    <!-- Оба игрока имеют по 40 очков -->
+                                    <c:choose>
+                                        <c:when test="${playerOnePoints > playerTwoPoints}">
+                                            >
+                                        </c:when>
+                                        <c:when test="${playerOnePoints < playerTwoPoints}">
+                                            <
+                                        </c:when>
+                                        <c:otherwise>
+                                            =
+                                        </c:otherwise>
+                                    </c:choose>
                                 </c:when>
-                                <c:when test="${playerOnePoints == 1}">
-                                    15
-                                </c:when>
-                                <c:when test="${playerOnePoints == 2}">
-                                    30
-                                </c:when>
-                                <c:when test="${playerOnePoints == 3}">
-                                    40
-                                </c:when>
+                                <c:otherwise>
+                                    <!-- Преобразование очков в теннисный формат -->
+                                    <c:choose>
+                                        <c:when test="${playerOnePoints == 0}">
+                                            0
+                                        </c:when>
+                                        <c:when test="${playerOnePoints == 1}">
+                                            15
+                                        </c:when>
+                                        <c:when test="${playerOnePoints == 2}">
+                                            30
+                                        </c:when>
+                                        <c:when test="${playerOnePoints == 3}">
+                                            40
+                                        </c:when>
+                                    </c:choose>
+                                </c:otherwise>
                             </c:choose>
                         </c:otherwise>
                     </c:choose>
@@ -69,35 +77,42 @@
                     <c:set var="playerTwoPoints" value="${match.playerTwo.points}" />
 
                     <c:choose>
-                        <c:when test="${playerOnePoints >= 3 && playerTwoPoints >= 3}">
-                            <%-- Оба игрока имеют по 40 очков --%>
-                            <c:choose>
-                                <c:when test="${match.playerOne.points < match.playerTwo.points}">
-                                    >
-                                </c:when>
-                                <c:when test="${match.playerOne.points > match.playerTwo.points}">
-                                    <
-                                </c:when>
-                                <c:otherwise>
-                                    =
-                                </c:otherwise>
-                            </c:choose>
+                        <c:when test="${match.playerOne.games == 6 && match.playerTwo.games == 6}">
+                            ${match.playerTwo.points}
                         </c:when>
                         <c:otherwise>
-                            <%-- Преобразование очков в теннисный формат --%>
                             <c:choose>
-                                <c:when test="${playerTwoPoints == 0}">
-                                    0
+                                <c:when test="${playerOnePoints >= 3 && playerTwoPoints >= 3}">
+                                    <!-- Оба игрока имеют по 40 очков -->
+                                    <c:choose>
+                                        <c:when test="${playerOnePoints < playerTwoPoints}">
+                                            >
+                                        </c:when>
+                                        <c:when test="${playerOnePoints > playerTwoPoints}">
+                                            <
+                                        </c:when>
+                                        <c:otherwise>
+                                            =
+                                        </c:otherwise>
+                                    </c:choose>
                                 </c:when>
-                                <c:when test="${playerTwoPoints == 1}">
-                                    15
-                                </c:when>
-                                <c:when test="${playerTwoPoints == 2}">
-                                    30
-                                </c:when>
-                                <c:when test="${playerTwoPoints == 3}">
-                                    40
-                                </c:when>
+                                <c:otherwise>
+                                    <!-- Преобразование очков в теннисный формат -->
+                                    <c:choose>
+                                        <c:when test="${playerTwoPoints == 0}">
+                                            0
+                                        </c:when>
+                                        <c:when test="${playerTwoPoints == 1}">
+                                            15
+                                        </c:when>
+                                        <c:when test="${playerTwoPoints == 2}">
+                                            30
+                                        </c:when>
+                                        <c:when test="${playerTwoPoints == 3}">
+                                            40
+                                        </c:when>
+                                    </c:choose>
+                                </c:otherwise>
                             </c:choose>
                         </c:otherwise>
                     </c:choose>
