@@ -1,6 +1,5 @@
 package com.vladislavlevchik.dao;
 
-import com.vladislavlevchik.entity.Match;
 import com.vladislavlevchik.entity.Player;
 import com.vladislavlevchik.utils.HibernateUtil;
 import org.hibernate.Session;
@@ -10,11 +9,13 @@ import java.util.List;
 import java.util.Optional;
 
 public class PlayerDao implements IPlayerDao {
+
+    private final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+
     @Override
     public Optional<Player> findByName(String name) {
 
-        try (SessionFactory sessionFactory = HibernateUtil.buildSessionFactory();
-             Session session = sessionFactory.openSession()) {
+        try (Session session = sessionFactory.openSession()) {
 
             return session.createQuery("SELECT p FROM Player p WHERE p.name = :name", Player.class)
                     .setParameter("name", name).uniqueResultOptional();
@@ -25,8 +26,7 @@ public class PlayerDao implements IPlayerDao {
 
     @Override
     public Player save(Player entity) {
-        try (SessionFactory sessionFactory = HibernateUtil.buildSessionFactory();
-             Session session = sessionFactory.openSession()) {
+        try (Session session = sessionFactory.openSession()) {
 
             session.save(entity);
 
@@ -36,7 +36,9 @@ public class PlayerDao implements IPlayerDao {
 
     @Override
     public List<Player> findAll() {
-        return null;
+        try (Session session = sessionFactory.openSession()) {
+            return session.createQuery("SELECT p FROM Player p", Player.class).list();
+        }
     }
 
 
