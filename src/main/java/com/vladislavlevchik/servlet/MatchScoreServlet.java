@@ -2,6 +2,7 @@ package com.vladislavlevchik.servlet;
 
 import com.vladislavlevchik.dto.MatchScoreDto;
 import com.vladislavlevchik.dto.PlayerScoreDto;
+import com.vladislavlevchik.service.FinishedMatchesPersistenceService;
 import com.vladislavlevchik.service.MatchScoreCalculationService;
 import com.vladislavlevchik.service.OngoingMatchesService;
 import jakarta.servlet.ServletException;
@@ -18,6 +19,7 @@ public class MatchScoreServlet extends HttpServlet {
 
     private final OngoingMatchesService ongoingMatchesService = new OngoingMatchesService();
     private final MatchScoreCalculationService matchScoreCalculationService = new MatchScoreCalculationService();
+    private final FinishedMatchesPersistenceService finishedMatchesPersistenceService = new FinishedMatchesPersistenceService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -39,6 +41,14 @@ public class MatchScoreServlet extends HttpServlet {
         MatchScoreDto match = ongoingMatchesService.findById(uuid);
 
         matchScoreCalculationService.updateScore(match, id);
+
+        PlayerScoreDto playerOne = match.getPlayerOne();
+        PlayerScoreDto playerTwo = match.getPlayerTwo();
+
+        if (playerOne.getSets() == 2 || playerTwo.getSets() == 2) {
+            finishedMatchesPersistenceService.persist(match);
+            ongoingMatchesService.removeFromMatches(uuid);
+        }
 
         resp.sendRedirect("/match-score?uuid=" + uuid);
     }
