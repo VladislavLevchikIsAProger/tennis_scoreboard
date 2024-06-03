@@ -1,11 +1,14 @@
 package com.vladislavlevchik.utils;
 
 import com.vladislavlevchik.dto.MatchResponseDto;
+import com.vladislavlevchik.dto.MatchScoreDto;
 import com.vladislavlevchik.dto.PlayerScoreDto;
 import com.vladislavlevchik.entity.Match;
 import com.vladislavlevchik.entity.Player;
 import lombok.experimental.UtilityClass;
+import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeMap;
 import org.modelmapper.convention.MatchingStrategies;
 
 @UtilityClass
@@ -23,6 +26,37 @@ public class MapperUtil {
 
         MODEL_MAPPER.typeMap(Player.class, PlayerScoreDto.class)
                 .addMapping(Player::getName, PlayerScoreDto::setPlayerName);
+
+        MODEL_MAPPER.typeMap(PlayerScoreDto.class, Player.class)
+                .addMapping(PlayerScoreDto::getId, Player::setId)
+                .addMapping(PlayerScoreDto::getPlayerName, Player::setName);
+
+        Converter<MatchScoreDto, Match> matchScoreDtoToMatchConverter = context -> {
+            MatchScoreDto matchScoreDto = context.getSource();
+
+            PlayerScoreDto playerOneDto = matchScoreDto.getPlayerOne();
+            PlayerScoreDto playerTwoDto = matchScoreDto.getPlayerTwo();
+            PlayerScoreDto winnerDto;
+            if (playerOneDto.getSets() > playerTwoDto.getSets()) {
+                winnerDto = playerOneDto;
+            } else {
+                winnerDto = playerTwoDto;
+            }
+
+            Player playerOne = MODEL_MAPPER.map(playerOneDto, Player.class);
+            Player playerTwo = MODEL_MAPPER.map(playerTwoDto, Player.class);
+            Player winner = MODEL_MAPPER.map(winnerDto, Player.class);
+
+            return Match.builder()
+                    .playerOne(playerOne)
+                    .playerTwo(playerTwo)
+                    .winner(winner)
+                    .build();
+        };
+
+        TypeMap<MatchScoreDto, Match> typeMap = MODEL_MAPPER.createTypeMap(MatchScoreDto.class, Match.class);
+        typeMap.setConverter(matchScoreDtoToMatchConverter);
+
     }
 
     public static MatchResponseDto convertToDto(Match match) {
@@ -32,4 +66,9 @@ public class MapperUtil {
     public static PlayerScoreDto convertToDto(Player player) {
         return MODEL_MAPPER.map(player, PlayerScoreDto.class);
     }
+
+    public static Match convertToEntity(MatchScoreDto matchScoreDto) {
+        return MODEL_MAPPER.map(matchScoreDto, Match.class);
+    }
+
 }
