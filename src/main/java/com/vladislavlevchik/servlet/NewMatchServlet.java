@@ -1,6 +1,6 @@
 package com.vladislavlevchik.servlet;
 
-import com.vladislavlevchik.dao.PlayerDao;
+import com.vladislavlevchik.dao.PlayerRepository;
 import com.vladislavlevchik.dto.MatchScoreDto;
 import com.vladislavlevchik.entity.Player;
 import com.vladislavlevchik.service.OngoingMatchesService;
@@ -19,7 +19,7 @@ import static com.vladislavlevchik.utils.MapperUtil.convertToDto;
 public class NewMatchServlet extends HttpServlet {
 
     private final OngoingMatchesService ongoingMatchesService = new OngoingMatchesService();
-    private final PlayerDao playerDao = new PlayerDao();
+    private final PlayerRepository playerDao = new PlayerRepository();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

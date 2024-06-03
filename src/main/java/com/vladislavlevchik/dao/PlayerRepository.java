@@ -1,16 +1,13 @@
 package com.vladislavlevchik.dao;
 
 import com.vladislavlevchik.entity.Player;
-import com.vladislavlevchik.utils.HibernateUtil;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
-import java.util.List;
 import java.util.Optional;
 
-public class PlayerDao extends BaseDao<Player,Long>{
+public class PlayerRepository extends BaseRepository<Player,Long> {
 
-    public PlayerDao() {
+    public PlayerRepository() {
         super(Player.class);
     }
 
