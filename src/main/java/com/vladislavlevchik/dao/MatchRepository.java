@@ -1,15 +1,13 @@
 package com.vladislavlevchik.dao;
 
 import com.vladislavlevchik.entity.Match;
-import com.vladislavlevchik.utils.HibernateUtil;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 import java.util.List;
 
-public class MatchDao extends BaseDao<Match, Long> {
+public class MatchRepository extends BaseRepository<Match, Long> {
 
-    public MatchDao() {
+    public MatchRepository() {
         super(Match.class);
     }
 

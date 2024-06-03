@@ -1,6 +1,6 @@
 package com.vladislavlevchik.servlet;
 
-import com.vladislavlevchik.dao.MatchDao;
+import com.vladislavlevchik.dao.MatchRepository;
 import com.vladislavlevchik.dto.MatchResponseDto;
 import com.vladislavlevchik.entity.Match;
 import com.vladislavlevchik.utils.MapperUtil;
@@ -16,7 +16,7 @@ import java.util.List;
 @WebServlet("/matches")
 public class MatchesServlet extends HttpServlet {
 
-    private final MatchDao matchDao = new MatchDao();
+    private final MatchRepository matchDao = new MatchRepository();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

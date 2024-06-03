@@ -3,7 +3,7 @@ package com.vladislavlevchik.dao;
 import java.util.List;
 import java.util.Optional;
 
-public interface CrudDao<E, K> {
+public interface CrudRepository<E, K> {
 
     List<E> findAll();
 

@@ -1,6 +1,5 @@
 package com.vladislavlevchik.dao;
 
-import com.vladislavlevchik.entity.Player;
 import com.vladislavlevchik.utils.HibernateUtil;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
@@ -10,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
-public abstract class BaseDao<E, K> implements CrudDao<E, K> {
+public abstract class BaseRepository<E, K> implements CrudRepository<E, K> {
 
     private final Class<E> clazz;
     protected final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
