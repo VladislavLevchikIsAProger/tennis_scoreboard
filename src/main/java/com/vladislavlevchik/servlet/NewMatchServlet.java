@@ -28,8 +28,8 @@ public class NewMatchServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String playerOneName = req.getParameter("playerOne");
-        String playerTwoName = req.getParameter("playerTwo");
+        String playerOneName = req.getParameter("playerOne").toUpperCase();
+        String playerTwoName = req.getParameter("playerTwo").toUpperCase();
 
         if (playerOneName.equals(playerTwoName)) {
             req.setAttribute("error", "Players must be different.");
