@@ -8,11 +8,12 @@ import org.hibernate.SessionFactory;
 import java.util.List;
 import java.util.Optional;
 
-public class PlayerDao implements IPlayerDao {
+public class PlayerDao extends BaseDao<Player,Long>{
 
-    private final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+    public PlayerDao() {
+        super(Player.class);
+    }
 
-    @Override
     public Optional<Player> findByName(String name) {
 
         try (Session session = sessionFactory.openSession()) {
@@ -23,23 +24,5 @@ public class PlayerDao implements IPlayerDao {
         }
 
     }
-
-    @Override
-    public Player save(Player entity) {
-        try (Session session = sessionFactory.openSession()) {
-
-            session.save(entity);
-
-            return entity;
-        }
-    }
-
-    @Override
-    public List<Player> findAll() {
-        try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("SELECT p FROM Player p", Player.class).list();
-        }
-    }
-
 
 }

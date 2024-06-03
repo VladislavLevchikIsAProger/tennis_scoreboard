@@ -7,34 +7,12 @@ import org.hibernate.SessionFactory;
 
 import java.util.List;
 
-public class MatchDao implements IMatchDao {
+public class MatchDao extends BaseDao<Match, Long> {
 
-    private final SessionFactory sessionFactory = HibernateUtil.buildSessionFactory();
-
-    @Override
-    public List<Match> findAll() {
-
-        try (Session session = sessionFactory.openSession()) {
-
-            return session.createQuery("SELECT m FROM Match m", Match.class).list();
-
-        }
-
+    public MatchDao() {
+        super(Match.class);
     }
 
-    @Override
-    public Match save(Match entity) {
-
-        try (Session session = sessionFactory.openSession()) {
-
-            session.save(entity);
-
-            return entity;
-        }
-
-    }
-
-    @Override
     public List<Match> findAllMatchesByPlayerName(String name) {
 
         try (Session session = sessionFactory.openSession()) {
