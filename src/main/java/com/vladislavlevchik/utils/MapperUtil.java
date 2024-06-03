@@ -17,7 +17,7 @@ public class MapperUtil {
         MODEL_MAPPER.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
         MODEL_MAPPER.typeMap(Match.class, MatchResponseDto.class)
-                .addMapping(src -> src.getPlayerTwo().getName(), MatchResponseDto::setPlayerOne)
+                .addMapping(src -> src.getPlayerOne().getName(), MatchResponseDto::setPlayerOne)
                 .addMapping(src -> src.getPlayerTwo().getName(), MatchResponseDto::setPlayerTwo)
                 .addMapping(src -> src.getWinner().getName(), MatchResponseDto::setWinnerName);
 
