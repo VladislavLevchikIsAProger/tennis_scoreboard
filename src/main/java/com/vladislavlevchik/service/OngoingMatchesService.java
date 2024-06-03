@@ -2,14 +2,13 @@ package com.vladislavlevchik.service;
 
 import com.vladislavlevchik.dto.MatchScoreDto;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class OngoingMatchesService {
 
-    //TODO мб коллекция потокобезопасная?
-    private static final Map<UUID, MatchScoreDto> allOngoingMatches = new HashMap<>();
+    private static final Map<UUID, MatchScoreDto> allOngoingMatches = new ConcurrentHashMap<>();
 
     public MatchScoreDto findById(UUID uuid) {
         return allOngoingMatches.get(uuid);
