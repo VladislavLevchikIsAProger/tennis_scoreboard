@@ -16,7 +16,7 @@ import java.util.List;
 @WebServlet("/matches")
 public class MatchesServlet extends HttpServlet {
 
-    private final MatchRepository matchDao = new MatchRepository();
+    private final MatchRepository matchRepository = new MatchRepository();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,10 +30,10 @@ public class MatchesServlet extends HttpServlet {
         List<Match> allMatches;
 
         if (filterByPlayerName == null) {
-            allMatches = matchDao.findAll();
+            allMatches = matchRepository.findAll();
         } else {
             filterByPlayerName = filterByPlayerName.toUpperCase();
-            allMatches = matchDao.findAllMatchesByPlayerName(filterByPlayerName);
+            allMatches = matchRepository.findAllMatchesByPlayerName(filterByPlayerName);
         }
 
         int totalMatches = allMatches.size();

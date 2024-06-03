@@ -19,14 +19,13 @@ import static com.vladislavlevchik.utils.MapperUtil.convertToDto;
 public class NewMatchServlet extends HttpServlet {
 
     private final OngoingMatchesService ongoingMatchesService = new OngoingMatchesService();
-    private final PlayerRepository playerDao = new PlayerRepository();
+    private final PlayerRepository playerRepository = new PlayerRepository();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/new-match.jsp").forward(req, resp);
     }
 
-    //TODO надо не забыть сделать так, чтобы
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String playerOneName = req.getParameter("playerOne");
@@ -38,14 +37,14 @@ public class NewMatchServlet extends HttpServlet {
             return;
         }
 
-        Player playerOne = playerDao.findByName(playerOneName)
-                .orElseGet(() -> playerDao.save(
+        Player playerOne = playerRepository.findByName(playerOneName)
+                .orElseGet(() -> playerRepository.save(
                         Player.builder()
                                 .name(playerOneName)
                                 .build()));
 
-        Player playerTwo = playerDao.findByName(playerTwoName)
-                .orElseGet(() -> playerDao.save(
+        Player playerTwo = playerRepository.findByName(playerTwoName)
+                .orElseGet(() -> playerRepository.save(
                         Player.builder()
                                 .name(playerTwoName)
                                 .build()));
