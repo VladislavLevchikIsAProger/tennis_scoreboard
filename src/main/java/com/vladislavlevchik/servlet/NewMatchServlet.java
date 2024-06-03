@@ -1,6 +1,6 @@
 package com.vladislavlevchik.servlet;
 
-import com.vladislavlevchik.dao.PlayerRepository;
+import com.vladislavlevchik.repository.PlayerRepository;
 import com.vladislavlevchik.dto.MatchScoreDto;
 import com.vladislavlevchik.entity.Player;
 import com.vladislavlevchik.service.OngoingMatchesService;

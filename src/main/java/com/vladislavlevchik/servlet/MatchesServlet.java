@@ -1,6 +1,6 @@
 package com.vladislavlevchik.servlet;
 
-import com.vladislavlevchik.dao.MatchRepository;
+import com.vladislavlevchik.repository.MatchRepository;
 import com.vladislavlevchik.dto.MatchResponseDto;
 import com.vladislavlevchik.entity.Match;
 import com.vladislavlevchik.utils.MapperUtil;
