@@ -32,6 +32,12 @@ public class NewMatchServlet extends HttpServlet {
         String playerOneName = req.getParameter("playerOne");
         String playerTwoName = req.getParameter("playerTwo");
 
+        if (playerOneName.equals(playerTwoName)) {
+            req.setAttribute("error", "Players must be different.");
+            req.getRequestDispatcher("/new-match.jsp").forward(req, resp);
+            return;
+        }
+
         Player playerOne = playerDao.findByName(playerOneName)
                 .orElseGet(() -> playerDao.save(
                         Player.builder()
