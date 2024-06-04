@@ -28,15 +28,12 @@ public class MatchesServlet extends HttpServlet {
         int page = (pageParam != null && !pageParam.isEmpty()) ? Integer.parseInt(pageParam) : 1;
 
         int pageSize = 5;
-        List<Match> allMatches = finishedMatchesPersistenceService.find(filterByPlayerName);
+        List<Match> allMatches = finishedMatchesPersistenceService.find(filterByPlayerName, pageSize, page);
 
-        int totalMatches = allMatches.size();
+        long totalMatches = finishedMatchesPersistenceService.getCount(filterByPlayerName);
         int totalPages = (int) Math.ceil((double) totalMatches / pageSize);
 
-        int start = (page - 1) * pageSize;
-        int end = Math.min(start + pageSize, totalMatches);
-
-        List<MatchResponseDto> matches = allMatches.subList(start, end)
+        List<MatchResponseDto> matches = allMatches
                 .stream()
                 .map(MapperUtil::convertToDto)
                 .toList();
