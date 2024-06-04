@@ -3,6 +3,7 @@ package com.vladislavlevchik.servlet;
 import com.vladislavlevchik.repository.MatchRepository;
 import com.vladislavlevchik.dto.MatchResponseDto;
 import com.vladislavlevchik.entity.Match;
+import com.vladislavlevchik.service.FinishedMatchesPersistenceService;
 import com.vladislavlevchik.utils.MapperUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,7 +17,7 @@ import java.util.List;
 @WebServlet("/matches")
 public class MatchesServlet extends HttpServlet {
 
-    private final MatchRepository matchRepository = new MatchRepository();
+    private final FinishedMatchesPersistenceService finishedMatchesPersistenceService = new FinishedMatchesPersistenceService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,14 +28,7 @@ public class MatchesServlet extends HttpServlet {
         int page = (pageParam != null && !pageParam.isEmpty()) ? Integer.parseInt(pageParam) : 1;
 
         int pageSize = 5;
-        List<Match> allMatches;
-
-        if (filterByPlayerName == null) {
-            allMatches = matchRepository.findAll();
-        } else {
-            filterByPlayerName = filterByPlayerName.toUpperCase();
-            allMatches = matchRepository.findAllMatchesByPlayerName(filterByPlayerName);
-        }
+        List<Match> allMatches = finishedMatchesPersistenceService.find(filterByPlayerName);
 
         int totalMatches = allMatches.size();
         int totalPages = (int) Math.ceil((double) totalMatches / pageSize);
