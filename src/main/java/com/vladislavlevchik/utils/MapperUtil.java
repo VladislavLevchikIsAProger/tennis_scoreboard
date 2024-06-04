@@ -2,6 +2,7 @@ package com.vladislavlevchik.utils;
 
 import com.vladislavlevchik.dto.MatchResponseDto;
 import com.vladislavlevchik.dto.MatchScoreDto;
+import com.vladislavlevchik.dto.PlayerRequestDto;
 import com.vladislavlevchik.dto.PlayerScoreDto;
 import com.vladislavlevchik.entity.Match;
 import com.vladislavlevchik.entity.Player;
@@ -30,6 +31,9 @@ public class MapperUtil {
         MODEL_MAPPER.typeMap(PlayerScoreDto.class, Player.class)
                 .addMapping(PlayerScoreDto::getId, Player::setId)
                 .addMapping(PlayerScoreDto::getPlayerName, Player::setName);
+
+        MODEL_MAPPER.typeMap(PlayerRequestDto.class, Player.class)
+                .addMapping(PlayerRequestDto::getName, Player::setName);
 
         Converter<MatchScoreDto, Match> matchScoreDtoToMatchConverter = context -> {
             MatchScoreDto matchScoreDto = context.getSource();
@@ -69,6 +73,10 @@ public class MapperUtil {
 
     public static Match convertToEntity(MatchScoreDto matchScoreDto) {
         return MODEL_MAPPER.map(matchScoreDto, Match.class);
+    }
+
+    public static Player convertToEntity(PlayerRequestDto playerRequestDto) {
+        return MODEL_MAPPER.map(playerRequestDto, Player.class);
     }
 
 }
