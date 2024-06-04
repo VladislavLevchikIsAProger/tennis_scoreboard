@@ -1,9 +1,10 @@
 package com.vladislavlevchik.servlet;
 
-import com.vladislavlevchik.repository.PlayerRepository;
+import com.vladislavlevchik.dto.PlayerRequestDto;
 import com.vladislavlevchik.dto.MatchScoreDto;
 import com.vladislavlevchik.entity.Player;
 import com.vladislavlevchik.service.OngoingMatchesService;
+import com.vladislavlevchik.service.PlayerPersistenceService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,7 +20,9 @@ import static com.vladislavlevchik.utils.MapperUtil.convertToDto;
 public class NewMatchServlet extends HttpServlet {
 
     private final OngoingMatchesService ongoingMatchesService = new OngoingMatchesService();
-    private final PlayerRepository playerRepository = new PlayerRepository();
+
+    private final PlayerPersistenceService playerPersistenceService = new PlayerPersistenceService();
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,26 +31,23 @@ public class NewMatchServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String playerOneName = req.getParameter("playerOne").toUpperCase();
-        String playerTwoName = req.getParameter("playerTwo").toUpperCase();
+        PlayerRequestDto playerOneDto = PlayerRequestDto.builder()
+                .name(req.getParameter("playerOne").toUpperCase())
+                .build();
 
-        if (playerOneName.equals(playerTwoName)) {
+        PlayerRequestDto playerTwoDto = PlayerRequestDto.builder()
+                .name(req.getParameter("playerTwo").toUpperCase())
+                .build();
+
+        if (playerOneDto.getName().equals(playerTwoDto.getName())) {
             req.setAttribute("error", "Players must be different.");
             req.getRequestDispatcher("/new-match.jsp").forward(req, resp);
             return;
         }
 
-        Player playerOne = playerRepository.findByName(playerOneName)
-                .orElseGet(() -> playerRepository.save(
-                        Player.builder()
-                                .name(playerOneName)
-                                .build()));
+        Player playerOne = playerPersistenceService.findOrSave(playerOneDto);
 
-        Player playerTwo = playerRepository.findByName(playerTwoName)
-                .orElseGet(() -> playerRepository.save(
-                        Player.builder()
-                                .name(playerTwoName)
-                                .build()));
+        Player playerTwo = playerPersistenceService.findOrSave(playerTwoDto);
 
         MatchScoreDto matchScoreDto = MatchScoreDto.builder()
                 .playerOne(convertToDto(playerOne))
