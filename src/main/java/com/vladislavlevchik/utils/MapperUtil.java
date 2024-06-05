@@ -79,4 +79,9 @@ public class MapperUtil {
         return MODEL_MAPPER.map(playerRequestDto, Player.class);
     }
 
+    public static MatchResponseDto convertToMatchResponseDto(MatchScoreDto matchScoreDto) {
+        Match matchEntity = convertToEntity(matchScoreDto);
+        return convertToDto(matchEntity);
+    }
+
 }
