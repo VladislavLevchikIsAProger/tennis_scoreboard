@@ -2,9 +2,12 @@ package com.vladislavlevchik.servlet;
 
 import com.vladislavlevchik.dto.MatchScoreDto;
 import com.vladislavlevchik.dto.PlayerScoreDto;
+import com.vladislavlevchik.entity.Match;
+import com.vladislavlevchik.entity.Player;
 import com.vladislavlevchik.service.FinishedMatchesPersistenceService;
 import com.vladislavlevchik.service.MatchScoreCalculationService;
 import com.vladislavlevchik.service.OngoingMatchesService;
+import com.vladislavlevchik.utils.MapperUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,6 +16,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.UUID;
+
+import static com.vladislavlevchik.utils.MapperUtil.*;
 
 @WebServlet("/match-score")
 public class MatchScoreServlet extends HttpServlet {
@@ -34,7 +39,7 @@ public class MatchScoreServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         UUID uuid = UUID.fromString(req.getParameter("uuid"));
         Long id = Long.parseLong(req.getParameter("playerId"));
 
@@ -48,6 +53,10 @@ public class MatchScoreServlet extends HttpServlet {
         if (playerOne.getSets() == 2 || playerTwo.getSets() == 2) {
             finishedMatchesPersistenceService.persist(match);
             ongoingMatchesService.removeFromMatches(uuid);
+
+            req.setAttribute("match", convertToMatchResponseDto(match));
+
+            req.getRequestDispatcher("/finish-match.jsp").forward(req, resp);
         }
 
         resp.sendRedirect("/match-score?uuid=" + uuid);
