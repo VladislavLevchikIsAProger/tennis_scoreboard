@@ -39,13 +39,7 @@
                         Start a new match
                     </button>
 <%--                </form>--%>
-                <%--                <button class="btn start-match">--%>
-                <%--                    Start a new match--%>
-                <%--                </button>--%>
-                <%--                <button class="btn view-results">--%>
-                <%--                    View match results--%>
-                <%--                </button>--%>
-<%--                <form action="matches">--%>
+<%--                <form class="form-btn" action="matches">--%>
                     <button class="btn view-results">
                         View match results
                     </button>
