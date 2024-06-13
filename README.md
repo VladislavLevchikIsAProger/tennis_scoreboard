@@ -7,16 +7,16 @@
 A web application that implements a scoreboard for a tennis match. The idea is taken from [here](https://zhukovsd.github.io/java-backend-learning-course/Projects/TennisScoreboard/)
 
 ## Technologies / tools used:
-![java-logo](<java (2).png>)
-![hibernate-logo](hibirnate.png)
-![jakarta-logo](<jakarta ee.png>)
-![h2-logo](<h2 database.png>)
-![maven-logo](maven.png)
-![html-logo](html.png)
-![css-logo](css.png)
-![jsp-logo](jsp.png)
-![jstl-logo](jstl.png)
-![junit-logo](junit5.png)
+![java-logo](https://github.com/VladislavLevchikIsAProger/tennis_scoreboard/assets/153897612/bc1ab298-7a78-42ec-8813-05b38668310e)
+![hibernate-logo](https://github.com/VladislavLevchikIsAProger/tennis_scoreboard/assets/153897612/071df0a5-79ef-4435-9c98-5a9b2383d420)
+![jakarta-logo](https://github.com/VladislavLevchikIsAProger/tennis_scoreboard/assets/153897612/0d339161-2abb-419e-9918-e6347b7c686e)
+![h2-logo](https://github.com/VladislavLevchikIsAProger/tennis_scoreboard/assets/153897612/3e65f8a8-a9a7-44bc-85c8-42d173338c74)
+![maven-logo](https://github.com/VladislavLevchikIsAProger/tennis_scoreboard/assets/153897612/159c5f30-83db-49a2-906a-fc92a071eeff)
+![html-logo](https://github.com/VladislavLevchikIsAProger/tennis_scoreboard/assets/153897612/cf73900e-a565-405d-b7dd-cc05f9429c2f)
+![css-logo](https://github.com/VladislavLevchikIsAProger/tennis_scoreboard/assets/153897612/d7d9ecf6-1cfb-4fe1-ba32-dd43d59921a8)
+![jsp-logo](https://github.com/VladislavLevchikIsAProger/tennis_scoreboard/assets/153897612/dc929923-33e6-4d73-a4c0-6eb3638b6ab5)
+![jstl-logo](https://github.com/VladislavLevchikIsAProger/tennis_scoreboard/assets/153897612/782f3a65-deb3-4fd2-9021-e8dfbb387cad)
+![junit-logo](https://github.com/VladislavLevchikIsAProger/tennis_scoreboard/assets/153897612/a1a05826-fecb-4b7a-827c-946ffc72da32)
 
 
 ## Application interface
