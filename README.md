@@ -1,6 +1,6 @@
 # Tennis Scoreboard
 
-![overview](<Frame Matches1.png>)
+![Overview](https://github.com/VladislavLevchikIsAProger/tennis_scoreboard/assets/153897612/1087e983-d3b1-4aff-ba5f-3dd1834fc9d3)
 
 ## Overview
 
@@ -32,13 +32,13 @@ A web application that implements a scoreboard for a tennis match. The idea is t
 
 ### Home page
 
-![Home-page](image-1.png)
+![Home-page](https://github.com/VladislavLevchikIsAProger/tennis_scoreboard/assets/153897612/26ac65bb-4052-4264-b448-cf942fa6ffee)
 
  - Links leading to the new match and the list of completed matches pages
 
 ### New match page
 
-![New-match-page](image-2.png)
+![New-match-page](https://github.com/VladislavLevchikIsAProger/tennis_scoreboard/assets/153897612/3c7ba520-f151-4da2-8c2d-5722cde18dbd)
 
 URL - `/new-match`
 
@@ -56,7 +56,7 @@ POST request handler:
 
 ### Match score page
 
-![Match-score-page](image-3.png)
+![Match-score-page](https://github.com/VladislavLevchikIsAProger/tennis_scoreboard/assets/153897612/b5aa3411-fbfe-4b82-942f-ed10e51503f1)
 
 URL - `/match-score?uuid=$match_id`. GET parameter uuid contains the UUID of the match.
 
@@ -78,7 +78,7 @@ POST request handler:
 
 ### Match result page
 
-![Match-resulte-page](image-4.png)
+![Match-resulte-page](https://github.com/VladislavLevchikIsAProger/tennis_scoreboard/assets/153897612/bf6f36cb-f4f3-49a9-9715-e786e8c0873f)
 
  - The match result page is returned when the match ends.
  - The address is the same as the match itself.
@@ -87,7 +87,7 @@ POST request handler:
 
 ### Played matches page 
 
-![Played-matches-page](image-5.png)
+![Played-matches-page](https://github.com/VladislavLevchikIsAProger/tennis_scoreboard/assets/153897612/14e69fbe-a72d-4b8b-a6db-d5c59a3cbe01)
 
 URL - `/matches?page=$page_number&filter_by_player_name=$player_name`. GET parameters:
  - `page` - page number. If the parameter is not specified, the first page is implied
@@ -101,7 +101,7 @@ Interface:
 
 ## Database diagram
 
-![database](<QuickDBD-Free Diagram (1).png>)
+![database](https://github.com/VladislavLevchikIsAProger/tennis_scoreboard/assets/153897612/4285a97a-c018-402e-993d-4f419f64d235)
 
 ## Requirements
   + Java 17+
@@ -122,7 +122,7 @@ Interface:
   
 4. In the pop-up window, click "+" and add Tomcat :
    
-    ![Add tomcat](image-7.png)
+    ![Add tomcat](https://github.com/VladislavLevchikIsAProger/tennis_scoreboard/assets/153897612/66f677af-ce05-4676-8dc7-09bc8cbf5db5)
 
 5. Then click "Fix" : 
 
@@ -130,7 +130,7 @@ Interface:
 
 6. In the window that pops up, select :
 
-   ![War exploded](image-6.png)
+   ![War exploded](https://github.com/VladislavLevchikIsAProger/tennis_scoreboard/assets/153897612/f9c8ffed-8f6f-41a7-8fe7-3e0cab9708d4)
 
 
 7. In the Application context leave the following :
