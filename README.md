@@ -7,26 +7,17 @@
 A web application that implements a scoreboard for a tennis match. The idea is taken from [here](https://zhukovsd.github.io/java-backend-learning-course/Projects/TennisScoreboard/)
 
 ## Technologies / tools used:
-![Static Badge](https://img.shields.io/badge/Java-asd?style=for-the-badge&labelColor=black&color=black)
-![Static Badge](https://img.shields.io/badge/jakarta%20ee-asd?style=for-the-badge&labelColor=black&color=black)
-![Static Badge](https://img.shields.io/badge/hibernate-asd?style=for-the-badge&logo=Hibernate&labelColor=black&color=black)
-![Static Badge](https://img.shields.io/badge/HTML-asd?style=for-the-badge&logo=html5&labelColor=black&color=black)
-![Static Badge](https://img.shields.io/badge/css-asd?style=for-the-badge&logo=css3&labelColor=black&color=black)
-![Static Badge](https://img.shields.io/badge/Maven-asd?style=for-the-badge&logo=apachemaven&labelColor=black&color=black)
-![Static Badge](https://img.shields.io/badge/junit5-asd?style=for-the-badge&logo=junit5&labelColor=black&color=black)
-![Static Badge](https://img.shields.io/badge/H2-asd?style=for-the-badge&labelColor=black&color=black)
+![java-logo](<java (2).png>)
+![hibernate-logo](hibirnate.png)
+![jakarta-logo](<jakarta ee.png>)
+![h2-logo](<h2 database.png>)
+![maven-logo](maven.png)
+![html-logo](html.png)
+![css-logo](css.png)
+![jsp-logo](jsp.png)
+![jstl-logo](jstl.png)
+![junit-logo](junit5.png)
 
- - Hibernate
- - Jakarta EE
- - H2 database
- - Maven
- - HQL
- - Criteria API
- - JUnit5
- - ModelMapper
- - HTML
- - CSS
- - JSP/JSTL
 
 ## Application interface
 
