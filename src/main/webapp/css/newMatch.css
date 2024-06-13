@@ -206,9 +206,9 @@ p {
     font-size: 20px;
 }
 
-.view-results{
-    padding: 9px 200px;
-}
+/*.view-results{*/
+/*    padding: 9px 200px;*/
+/*}*/
 
 .btn {
     border: none;
@@ -442,6 +442,7 @@ p {
 /*MATCHES*/
 
 .input-container{
+    width: 100%;
     display: flex;
 }
 

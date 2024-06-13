@@ -1,3 +1,4 @@
+
 /* Указываем box sizing */
 *,
 *::before,
@@ -193,7 +194,7 @@ p {
 }
 
 .button-container button{
-    width: 500px;
+    min-width: 600px;
     border-radius: 23px;
     cursor: pointer;
     font-size: 20px;
@@ -204,11 +205,20 @@ p {
     border-radius: 23px;
     cursor: pointer;
     font-size: 20px;
+    padding: 9px 0px;
 }
 
 .view-results{
-    padding: 9px 200px;
+    background-color: #e7e7e7;
 }
+
+.start-match{
+    background-color: #42a7f5;
+}
+
+/*.view-results{*/
+/*    padding: 9px 200px;*/
+/*}*/
 
 .btn {
     border: none;
@@ -384,4 +394,146 @@ p {
 
 .new-match__img{
     border-radius: 15px;
+    margin: 0 auto;
+    width: 90%;
+    display: block;
+}
+
+.label-player{
+    display: block;
+}
+
+.input-player{
+    padding: 18px 350px 18px 30px;
+    border: 1px solid #ccc;
+    border-radius: 18px;
+}
+
+.input-player::-webkit-input-placeholder{
+    color: #42a7f5;
+}
+
+.label-player{
+    margin-top: 30px;
+}
+
+.btn-player{
+    display: block;
+    margin-top: 20px;
+    padding: 18px 258px;
+    border-radius: 18px;
+    border: none;
+    background-color: #42a7f5;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.center{
+    margin: 0 auto;
+    width: 572px;
+}
+
+.create-title-player{
+    margin-left: 62px;
+}
+
+.btn-filter{
+    width: 280px;
+    line-height: 45px;
+    margin-left: 20px;
+    border-radius: 18px;
+    border: none;
+    background-color: #42a7f5;
+    color: #fff;
+    cursor: pointer;
+}
+
+/*MATCHES*/
+
+.form-matches{
+    width: 100%;
+}
+
+.input-container{
+    width: 100%;
+    display: flex;
+}
+
+.input-filter{
+    width: 100%;
+    border-radius: 15px;
+    background-color: #dddddd;
+    border: none;
+    padding-left: 30px;
+    padding-bottom: 12px;
+    padding-top: 12px;
+    color: #000;
+}
+
+.table-matches {
+    margin-top: 30px;
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+}
+.table-matches th {
+    font-weight: bold;
+    padding: 5px;
+    background: #dddddd;
+    border: 1px solid #dddddd;
+}
+.table-matches td {
+    width: 33%;
+    border-bottom: 1px solid #dddddd;
+    padding: 51px 0px;
+    text-align: center;
+}
+.table-matches tr td:first-child, .table-matches tr th:first-child {
+    border-left: none;
+}
+.table-matches tr td:last-child, .table-matches tr th:last-child {
+    border-right: none;
+}
+
+.winner-name-td{
+    background-color: #dddddd;
+    display: block;
+    width: 38%;
+    margin: 0 auto;
+    border-radius: 18px;
+}
+.prev, .next{
+    text-decoration: none;
+    font-size: 40px;
+    color: #000;
+}
+
+.next{
+    margin-left: 20px;
+}
+
+.pagination{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.num-page{
+    margin-left: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+strong{
+    padding-top: 4px;
+    margin-left: 20px;
+    font-size: 25px;
+    margin-top: 2px;
+    background-color: #ccc;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    color: #000;
 }

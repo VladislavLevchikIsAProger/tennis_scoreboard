@@ -34,16 +34,16 @@
             <p>Manage your tennis matches, record results, and track rankings</p>
             <img src="images/welcome_image.png" alt="Welcome Image" class="welcome-image">
             <div class="button-container">
-<%--                <form action="new-match">--%>
+                <a href="new-match">
                     <button class="btn start-match">
                         Start a new match
                     </button>
-<%--                </form>--%>
-<%--                <form class="form-btn" action="matches">--%>
+                </a>
+                <a href="matches">
                     <button class="btn view-results">
                         View match results
                     </button>
-<%--                </form>--%>
+                </a>
             </div>
         </div>
     </section>

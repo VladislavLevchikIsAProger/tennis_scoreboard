@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/newMatch.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -31,19 +31,23 @@
 </header>
 <div class="container">
     <h1>Matches</h1>
-    <form method="get" action="matches">
+<%--    <form method="get" action="matches">--%>
         <div class="input-container">
-            <input class="input-filter" placeholder="Find a match..." type="text" id="filter_by_player_name"
-                   name="filter_by_player_name"
-                   value="${param.filter_by_player_name}" pattern=".*\S.*" required
-                   title="Player name cannot be empty or just spaces.">
+
+                <form class="form-matches" method="get" action="matches">
+                    <input class="input-filter" placeholder="Find a match..." type="text" id="filter_by_player_name"
+                           name="filter_by_player_name"
+                           value="${param.filter_by_player_name}" pattern=".*\S.*" required
+                           title="Player name cannot be empty or just spaces.">
+                </form>
+
             <div>
-                <a href="matches">
+                <a href="/matches">
                     <button class="btn-filter">Reset Filter</button>
                 </a>
             </div>
         </div>
-    </form>
+<%--    </form>--%>
 
     <table class="table-matches">
         <tr>
