@@ -5,6 +5,7 @@ import com.vladislavlevchik.dto.MatchScoreDto;
 import com.vladislavlevchik.entity.Player;
 import com.vladislavlevchik.service.OngoingMatchesService;
 import com.vladislavlevchik.service.PlayerPersistenceService;
+import com.vladislavlevchik.utils.ValidationUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -21,16 +22,13 @@ public class NewMatchServlet extends HttpServlet {
 
     private final OngoingMatchesService ongoingMatchesService = new OngoingMatchesService();
 
-    private final PlayerPersistenceService playerPersistenceService = new PlayerPersistenceService();
-
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/new-match.jsp").forward(req, resp);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         PlayerRequestDto playerOneDto = PlayerRequestDto.builder()
                 .name(req.getParameter("playerOne").toUpperCase())
                 .build();
@@ -39,24 +37,9 @@ public class NewMatchServlet extends HttpServlet {
                 .name(req.getParameter("playerTwo").toUpperCase())
                 .build();
 
-        if (playerOneDto.getName().equals(playerTwoDto.getName())) {
-            req.setAttribute("error", "Players must be different.");
-            req.getRequestDispatcher("/new-match.jsp").forward(req, resp);
-            return;
-        }
+        ValidationUtil.validate(playerOneDto, playerTwoDto);
 
-        Player playerOne = playerPersistenceService.findOrSave(playerOneDto);
-
-        Player playerTwo = playerPersistenceService.findOrSave(playerTwoDto);
-
-        MatchScoreDto matchScoreDto = MatchScoreDto.builder()
-                .playerOne(convertToDto(playerOne))
-                .playerTwo(convertToDto(playerTwo))
-                .build();
-
-        UUID uuid = UUID.randomUUID();
-
-        ongoingMatchesService.addMatch(uuid, matchScoreDto);
+        UUID uuid = ongoingMatchesService.createMatch(playerOneDto, playerTwoDto);
 
         resp.sendRedirect("/match-score?uuid=" + uuid);
     }
