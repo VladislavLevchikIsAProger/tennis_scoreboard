@@ -1,10 +1,7 @@
 package com.vladislavlevchik.servlet;
 
 import com.vladislavlevchik.dto.PlayerRequestDto;
-import com.vladislavlevchik.dto.MatchScoreDto;
-import com.vladislavlevchik.entity.Player;
 import com.vladislavlevchik.service.OngoingMatchesService;
-import com.vladislavlevchik.service.PlayerPersistenceService;
 import com.vladislavlevchik.utils.ValidationUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -14,8 +11,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.UUID;
-
-import static com.vladislavlevchik.utils.MapperUtil.convertToDto;
 
 @WebServlet("/new-match")
 public class NewMatchServlet extends HttpServlet {

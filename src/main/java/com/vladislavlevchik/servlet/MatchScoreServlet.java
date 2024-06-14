@@ -1,8 +1,6 @@
 package com.vladislavlevchik.servlet;
 
 import com.vladislavlevchik.dto.MatchScoreDto;
-import com.vladislavlevchik.dto.PlayerScoreDto;
-import com.vladislavlevchik.service.FinishedMatchesPersistenceService;
 import com.vladislavlevchik.service.MatchScoreCalculationService;
 import com.vladislavlevchik.service.OngoingMatchesService;
 import jakarta.servlet.ServletException;
