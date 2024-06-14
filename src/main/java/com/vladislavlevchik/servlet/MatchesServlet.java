@@ -16,7 +16,13 @@ import java.util.List;
 @WebServlet("/matches")
 public class MatchesServlet extends HttpServlet {
 
+    private int pageSize;
     private final FinishedMatchesPersistenceService finishedMatchesPersistenceService = new FinishedMatchesPersistenceService();
+
+    @Override
+    public void init() {
+        this.pageSize = (int) getServletContext().getAttribute("pageSize");
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,7 +32,6 @@ public class MatchesServlet extends HttpServlet {
 
         int page = (pageParam != null && !pageParam.isEmpty()) ? Integer.parseInt(pageParam) : 1;
 
-        int pageSize = 5;
         List<Match> allMatches = finishedMatchesPersistenceService.find(filterByPlayerName, pageSize, page);
 
         long totalMatches = finishedMatchesPersistenceService.getCount(filterByPlayerName);
