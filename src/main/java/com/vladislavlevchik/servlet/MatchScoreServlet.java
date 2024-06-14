@@ -21,7 +21,6 @@ public class MatchScoreServlet extends HttpServlet {
 
     private final OngoingMatchesService ongoingMatchesService = new OngoingMatchesService();
     private final MatchScoreCalculationService matchScoreCalculationService = new MatchScoreCalculationService();
-    private final FinishedMatchesPersistenceService finishedMatchesPersistenceService = new FinishedMatchesPersistenceService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -44,15 +43,8 @@ public class MatchScoreServlet extends HttpServlet {
 
         matchScoreCalculationService.updateScore(match, id);
 
-        PlayerScoreDto playerOne = match.getPlayerOne();
-        PlayerScoreDto playerTwo = match.getPlayerTwo();
-
-        if (playerOne.getSets() == 2 || playerTwo.getSets() == 2) {
-            finishedMatchesPersistenceService.persist(match);
-            ongoingMatchesService.removeFromMatches(uuid);
-
+        if (ongoingMatchesService.checkIFMatchIsOver(uuid, match)){
             req.setAttribute("match", convertToMatchResponseDto(match));
-
             req.getRequestDispatcher("/finish-match.jsp").forward(req, resp);
         }
 
