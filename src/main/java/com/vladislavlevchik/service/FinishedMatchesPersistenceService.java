@@ -18,19 +18,19 @@ public class FinishedMatchesPersistenceService {
     public List<Match> find(String name, int pageSize, int page) {
         if (name == null) {
             return matchRepository.findAllWithPagination(pageSize, page);
-        } else {
-            name = name.toUpperCase();
-            return matchRepository.findAllByPlayerNameWithPagination(name, pageSize, page);
         }
+
+        name = name.toUpperCase();
+        return matchRepository.findAllByPlayerNameWithPagination(name, pageSize, page);
     }
 
     public long getCount(String name) {
         if (name == null) {
             return matchRepository.getCount();
-        } else {
-            name = name.toUpperCase();
-            return matchRepository.getCountByPlayerName(name);
         }
+
+        name = name.toUpperCase();
+        return matchRepository.getCountByPlayerName(name);
     }
 
 }
