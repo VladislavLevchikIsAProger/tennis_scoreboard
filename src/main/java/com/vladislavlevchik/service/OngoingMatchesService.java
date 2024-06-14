@@ -2,6 +2,7 @@ package com.vladislavlevchik.service;
 
 import com.vladislavlevchik.dto.MatchScoreDto;
 import com.vladislavlevchik.dto.PlayerRequestDto;
+import com.vladislavlevchik.dto.PlayerScoreDto;
 import com.vladislavlevchik.entity.Player;
 
 import java.util.Map;
@@ -12,6 +13,7 @@ import static com.vladislavlevchik.utils.MapperUtil.convertToDto;
 
 public class OngoingMatchesService {
     private static final Map<UUID, MatchScoreDto> allOngoingMatches = new ConcurrentHashMap<>();
+    private final FinishedMatchesPersistenceService finishedMatchesPersistenceService = new FinishedMatchesPersistenceService();
     private final PlayerPersistenceService playerPersistenceService = new PlayerPersistenceService();
 
     public MatchScoreDto findById(UUID uuid) {
@@ -37,5 +39,19 @@ public class OngoingMatchesService {
         allOngoingMatches.put(uuid, matchScoreDto);
 
         return uuid;
+    }
+
+    public boolean checkIFMatchIsOver(UUID uuid, MatchScoreDto match) {
+        PlayerScoreDto playerOne = match.getPlayerOne();
+        PlayerScoreDto playerTwo = match.getPlayerTwo();
+
+        if (playerOne.getSets() == 2 || playerTwo.getSets() == 2) {
+            finishedMatchesPersistenceService.persist(match);
+            removeFromMatches(uuid);
+
+            return true;
+        }
+
+        return false;
     }
 }
